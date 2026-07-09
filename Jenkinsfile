@@ -52,23 +52,20 @@ pipeline {
         }
 
         stage('Verify Application') {
-    steps {
-        sh '''
-        echo "Waiting for application to start..."
-        sleep 10
-
-        echo "Verifying application..."
-        curl -f http://localhost:8082/
-        '''
+            steps {
+                sh '''
+                echo "Waiting for application..."
+                sleep 10
+                curl -f http://localhost:8082/
+                '''
+            }
+        }
     }
-}
-    
 
     post {
         success {
             echo 'Pipeline Executed Successfully'
         }
-
         failure {
             echo 'Pipeline Failed'
         }
