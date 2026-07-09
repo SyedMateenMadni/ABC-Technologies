@@ -52,11 +52,17 @@ pipeline {
         }
 
         stage('Verify Application') {
-            steps {
-                sh 'curl http://localhost:8082/'
-            }
-        }
+    steps {
+        sh '''
+        echo "Waiting for application to start..."
+        sleep 10
+
+        echo "Verifying application..."
+        curl -f http://localhost:8082/
+        '''
     }
+}
+    
 
     post {
         success {
